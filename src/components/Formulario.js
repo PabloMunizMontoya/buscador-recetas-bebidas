@@ -1,7 +1,12 @@
-import React, {Fragment} from 'react'
-import Header from './Header';
+import React, { useContext } from 'react'
+import { CategoriasContext } from '../context/CategoriasContext'
+
 
 const Formulario = () => {
+
+    //1.6 usamos el nuevo hook para hacer funcionar context, este hook usa la variable que contiene la function createContext(), de esta forma ya tendremos disponible todo lo que tiene el value
+    const {hola} = useContext( CategoriasContext)
+
     return (
         <form
             className='col-12'
