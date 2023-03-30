@@ -20,7 +20,7 @@ const Formulario = () => {
     //1.6 usamos el nuevo hook para hacer funcionar context, este hook usa la variable que contiene la function createContext(), de esta forma ya tendremos disponible todo lo que tiene el value context dentro del provider.
     const {categorias} = useContext( CategoriasContext)
 
-    const {buscarRecetas} = useContext(RecetasContext)
+    const {buscarRecetas, guardarConsultar} = useContext(RecetasContext)
 
 
 
@@ -32,6 +32,7 @@ const Formulario = () => {
             onSubmit= {e => {
                 e.preventDefault()
                 buscarRecetas(busqueda)
+                guardarConsultar(true)
             }}
         >
             <fieldset className='text-center'>
