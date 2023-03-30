@@ -5,7 +5,9 @@ import { CategoriasContext } from '../context/CategoriasContext'
 const Formulario = () => {
 
     //1.6 usamos el nuevo hook para hacer funcionar context, este hook usa la variable que contiene la function createContext(), de esta forma ya tendremos disponible todo lo que tiene el value context dentro del provider.
-    const {} = useContext( CategoriasContext)
+    const {categorias} = useContext( CategoriasContext)
+
+    console.log(categorias)
 
     return (
         <form
@@ -32,6 +34,12 @@ const Formulario = () => {
                         name='categoria'
                     >
                         <option value="">-- Selecciona Categoria</option>
+                        {categorias.map(categoria => (
+                            <option 
+                                key ={categoria.strCategory}
+                                value ={categoria.strCategory}
+                            >{categoria.strCategory}</option>
+                        ))} 
                     </select>
                 </div>
 

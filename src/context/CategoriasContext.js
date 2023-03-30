@@ -8,7 +8,7 @@ export const CategoriasContext = createContext()
 const CategoriasProvider = (props) => {
 
     //1.3 crear el state del context 
-    const [cateorias, guardarCategorias] = useState([])
+    const [categorias, guardarCategorias] = useState([])
 
     //1.6 ejecutar el llamado a la api
     useEffect (() => {
@@ -26,7 +26,7 @@ const CategoriasProvider = (props) => {
         <CategoriasContext.Provider
         
             value={{
-                cateorias
+                categorias
             }}
         >
             {props.children}
