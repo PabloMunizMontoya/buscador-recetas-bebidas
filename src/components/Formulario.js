@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { CategoriasContext } from '../context/CategoriasContext'
+import { RecetasContext } from '../context/RecetasContext'
 
 
 const Formulario = () => {
@@ -19,6 +20,8 @@ const Formulario = () => {
     //1.6 usamos el nuevo hook para hacer funcionar context, este hook usa la variable que contiene la function createContext(), de esta forma ya tendremos disponible todo lo que tiene el value context dentro del provider.
     const {categorias} = useContext( CategoriasContext)
 
+    const {buscarRecetas} = useContext(RecetasContext)
+
 
 
     console.log(categorias)
@@ -26,6 +29,10 @@ const Formulario = () => {
     return (
         <form
             className='col-12'
+            onSubmit= {e => {
+                e.preventDefault()
+                buscarRecetas(busqueda)
+            }}
         >
             <fieldset className='text-center'>
                 <legend>
