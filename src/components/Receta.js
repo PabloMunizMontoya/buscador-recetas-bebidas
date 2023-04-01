@@ -36,7 +36,10 @@ const Receta = ({receta}) => {
 
     const { guardarIdReceta, info, guardarInfo } = useContext(ModalContext)
     
-
+    const ingredients = Object.entries(info)
+    .filter(([key, value]) => key.startsWith("strIngredient") && value !== null)
+    .map(([key, value]) => value);
+    console.log (ingredients)
     return (
         <div className="col-md-4 mb-3">
             <div className="card">
