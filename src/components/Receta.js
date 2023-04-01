@@ -34,7 +34,8 @@ const Receta = ({receta}) => {
         setOpen(false)
     }
 
-    const { guardarIdReceta } = useContext(ModalContext)
+    const { guardarIdReceta, info, guardarInfo } = useContext(ModalContext)
+    
 
     return (
         <div className="col-md-4 mb-3">
@@ -62,24 +63,26 @@ const Receta = ({receta}) => {
                         open={open}
                         onClose={() => {
                             guardarIdReceta(null)
+                            guardarInfo({})
                             handleClose()
+                            
                         }}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
-                            <Typography
-                                id="modal-modal-title"
-                                variant="h6"
-                                component="h2"
-                            >
-                                Text in a modal
-                            </Typography>
+                            
                             <Typography
                                 id="modal-modal-description"
                                 sx={{ mt: 2 }}
                             >
-                                modal
+                                
+                                <h2>{info.strDrink}</h2>
+                                <h4>Ingredientes:</h4>
+
+                                <h3 className='mt-4'>Instrucciones de preparación </h3>
+                                <p>{info.strInstructions}</p>
+                                <img className='img-fluid my-4' src={info.strDrinkThumb} />
                             </Typography>
                         </Box>
                     </Modal>
