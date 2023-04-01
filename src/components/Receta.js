@@ -13,7 +13,9 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    maxWidth: '90%',
+    maxHeight: '90%',
+    overflowY: 'auto',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -35,11 +37,34 @@ const Receta = ({receta}) => {
     }
 
     const { guardarIdReceta, info, guardarInfo } = useContext(ModalContext)
+    console.log(info)
     
-    const ingredients = Object.entries(info)
-    .filter(([key, value]) => key.startsWith("strIngredient") && value !== null)
-    .map(([key, value]) => value);
-    console.log (ingredients)
+    /* const ingredientsEntries = Object.entries(info)
+    const ingredientsAndMeasure =
+    ingredientsEntries.filter(([key, value]) =>
+    (key.startsWith('strIngredient') || key.startsWith('strMeasure')) && value !== null
+    );
+    console.log (ingredientsAndMeasure)
+
+
+    const items = ingredientsAndMeasure.map(([key, value]) => (
+        <li key={key}>{value}</li>
+      ));
+ */
+
+    const mostrarIngredientes = info => {
+        let ingredientes = []
+        for (let i = 1; i < 16; i++){
+            if(info[`strIngredient${i}`]) {
+                ingredientes.push(
+                    <li>{info[`strIngredient${i}`]} { info[`strMeasure${i}`]}</li>
+                )
+            }
+
+        }
+        return ingredientes
+    }
+
     return (
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -79,13 +104,15 @@ const Receta = ({receta}) => {
                                 id="modal-modal-description"
                                 sx={{ mt: 2 }}
                             >
-                                
                                 <h2>{info.strDrink}</h2>
-                                <h4>Ingredientes:</h4>
-
                                 <h3 className='mt-4'>Instrucciones de preparación </h3>
                                 <p>{info.strInstructions}</p>
-                                <img className='img-fluid my-4' src={info.strDrinkThumb} />
+                                <img className='img-fluid my-2' src={info.strDrinkThumb} />
+                                <h4>Ingredientes y Cantidades :</h4>
+                                <ul>
+                                    { mostrarIngredientes(info)}
+                                    
+                                </ul>
                             </Typography>
                         </Box>
                     </Modal>
